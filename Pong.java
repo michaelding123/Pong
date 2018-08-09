@@ -1,21 +1,23 @@
 package pong;
 
 import processing.core.PApplet;
+import processing.core.PFont;
 
 public class Pong extends PApplet {
 
-	boolean moving = false;
 	float ballX = 145;
 	float ballY = 260;
 	float rectX;
-	float rectY = 480;
+	float rectY = 470;
 	float speedX = 4;
 	float speedY = -5;
 	private float rectHeight = 10;
-	private float rectWidth = 80;
+	private float rectWidth = 60;
+	int score = 0;
+	PFont f;
 
 	public void setup() {
-
+		f = createFont("Arial", 16, true);
 	}
 
 	public void settings() {
@@ -23,9 +25,12 @@ public class Pong extends PApplet {
 	}
 
 	public void draw() {
-		background(255, 255, 255);
+		background(255, 255, 255);	
 		ball();
 		rectangle();
+		textFont(f, 20);
+		fill(0);
+		text("Score:" + score, 20, 20);
 	}
 
 	public void ball() {
@@ -54,7 +59,12 @@ public class Pong extends PApplet {
 	
 	public boolean collision() {
 		//System.out.println("weghuqwerug");
-		if(ballX >= rectX && ballX <= rectX + height && ballY >= rectY && ballY <= rectY + width) {
+		if(ballX >= rectX && ballX <= rectX + rectWidth && ballY >= rectY && ballY <= rectY + rectHeight) {
+			score++;
+			System.out.println("L:" + ballX);
+			System.out.println(ballY);
+			System.out.println(rectX);
+			System.out.println(rectY);
 			return true;
 		}
 		return false;
@@ -69,7 +79,7 @@ public class Pong extends PApplet {
 	}
 	
 	public void mouseMoved() {
-		rectX = mouseX - 40;
+		rectX = mouseX - 30;
 	}
 
 }
