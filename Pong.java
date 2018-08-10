@@ -1,16 +1,24 @@
 package pong;
 
+import java.util.Random;
+
 import processing.core.PApplet;
 import processing.core.PFont;
+import processing.core.PImage;
 
 public class Pong extends PApplet {
-
-	float ballX = 145;
-	float ballY = 260;
+	
+	PImage bg;
+	int y;
+	int low = 150;
+	int high = 300;
+	Random r = new Random();
+	float ballX = r.nextInt(high - low) + low;
+	float ballY = r.nextInt(high - low) + low;
 	float rectX;
-	float rectY = 470;
-	float speedX = 4;
-	float speedY = -5;
+	float rectY = 480;
+	float speedX = 9;
+	float speedY = -8;
 	private float rectHeight = 10;
 	private float rectWidth = 60;
 	int score = 0;
@@ -18,6 +26,7 @@ public class Pong extends PApplet {
 
 	public void setup() {
 		f = createFont("Arial", 16, true);
+		bg = loadImage("wallpaper.jpg");
 	}
 
 	public void settings() {
@@ -25,17 +34,18 @@ public class Pong extends PApplet {
 	}
 
 	public void draw() {
-		background(255, 255, 255);	
+		//background(255, 255, 255);	
+		background(bg);
 		ball();
 		rectangle();
 		textFont(f, 20);
-		fill(0);
+		fill(75, 244, 66);
 		text("Score:" + score, 20, 20);
 	}
 
 	public void ball() {
-		stroke(0);
-		fill(0);
+		stroke(75, 244, 66);
+		fill(75, 244, 66);
 		ellipse(ballX, ballY, 10, 10);
 		ballX += speedX;
 		ballY += speedY;
@@ -61,10 +71,10 @@ public class Pong extends PApplet {
 		//System.out.println("weghuqwerug");
 		if(ballX >= rectX && ballX <= rectX + rectWidth && ballY >= rectY && ballY <= rectY + rectHeight) {
 			score++;
-			System.out.println("L:" + ballX);
-			System.out.println(ballY);
-			System.out.println(rectX);
-			System.out.println(rectY);
+			//System.out.println("L:" + ballX);
+			//System.out.println(ballY);
+			//System.out.println(rectX);
+			//System.out.println(rectY);
 			return true;
 		}
 		return false;
