@@ -11,7 +11,7 @@ public class Pong extends PApplet {
 	PImage bg;
 	int y;
 	int low = 150;
-	int high = 300;
+	int high = 280;
 	Random r = new Random();
 	float ballX = r.nextInt(high - low) + low;
 	float ballY = r.nextInt(high - low) + low;
@@ -68,7 +68,6 @@ public class Pong extends PApplet {
 	}
 	
 	public boolean collision() {
-		//System.out.println("weghuqwerug");
 		if(ballX >= rectX && ballX <= rectX + rectWidth && ballY >= rectY && ballY <= rectY + rectHeight) {
 			score++;
 			//System.out.println("L:" + ballX);
@@ -89,7 +88,7 @@ public class Pong extends PApplet {
 	}
 	
 	public void mouseMoved() {
-		rectX = mouseX - 30;
+		rectX = mouseX - rectWidth/2;
 	}
 
 }
